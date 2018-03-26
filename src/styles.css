@@ -1,0 +1,36 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+mat-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.example-card {
+    width: 400px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+}
+
+span.mat-checkbox-label {
+    white-space: initial !important;
+}
+
+i.deleteTask, i.editTask {
+    float: right;
+}
+
+label.mat-checkbox-layout, span.mat-checkbox-label {
+    width: 100%;
+}
+
+

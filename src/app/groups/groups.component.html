@@ -1,0 +1,60 @@
+<app-login class="authForms"></app-login>
+<main>
+    <div class="group-card" *ngIf="groups?.length > 0;else noGroups" (click)="cancelInputs($event)">
+        <mat-card *ngFor="let group of groups">
+            <div *ngIf="editState == ''">
+                <h2> {{group.title}}</h2>
+                <i *ngIf="globals.userIsLogged" class="editGroup material-icons" (click)="editGroup(group)">mode_edit</i>
+            </div>
+            <div *ngIf="editState == group.id">
+                <input type="text" [(ngModel)]="group.title" (submit)="updateGroup(group)"/>
+                <i class="editGroup material-icons" (click)="updateGroup(group)">done</i>
+            </div>
+            <mat-card-content>
+                <app-tasks [parentId]="group.id"></app-tasks>
+            </mat-card-content>
+            <mat-card-actions>
+                <button *ngIf="this.globals.userIsLogged" mat-raised-button (click)="deleteGroup($event, group)">Delete
+                    List
+                </button>
+            </mat-card-actions>
+        </mat-card>
+
+        <mat-card *ngIf="noGroups">
+            <mat-card-content>
+                <form (ngSubmit)="addBoard();activeInput = !activeInput">
+                    <span class="new-list" *ngIf="!activeInput" (click)="activeInput = !activeInput">New list…</span>
+                    <button class="fright" *ngIf="!activeInput" (click)="activeInput = !activeInput" mat-mini-fab>Add
+                    </button>
+                    <input class="new-list" *ngIf="activeInput" type="text" placeholder="New list..."
+                           [(ngModel)]="newGroup.title"
+                           name="title" autofocus>
+                    <button class="fright" *ngIf="activeInput" type="submit" value="Submit" mat-mini-fab
+                            color="primary">Add
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <ng-template #noGroups>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <mat-card>
+            <h5>There are no lists to display</h5>
+
+            <mat-card-content>
+                <form (ngSubmit)="addBoard();activeInput = !activeInput">
+                    <span class="new-list" *ngIf="!activeInput" (click)="activeInput = !activeInput">New list…</span>
+                    <button class="fright" *ngIf="!activeInput" (click)="activeInput = !activeInput" mat-mini-fab>Add
+                    </button>
+                    <input class="new-list" *ngIf="activeInput" type="text" placeholder="New list..."
+                           [(ngModel)]="newGroup.title"
+                           name="title" autofocus>
+                    <button class="fright" *ngIf="activeInput" type="submit" value="Submit" mat-mini-fab
+                            color="primary">Add
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </ng-template>
+</main>

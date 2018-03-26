@@ -1,0 +1,23 @@
+<div *ngIf="this.globals.userIsLogged">
+  <form (ngSubmit)="onSubmit(parentId)">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          Add Task
+        </mat-expansion-panel-header>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Task title" [(ngModel)]="newTask.title" name="title">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Description" [(ngModel)]="newTask.description" name="description">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Due date" [(ngModel)]="newTask.dueDate" class="dueDate" name="dueDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button type="submit" value="Submit" mat-raised-button>Add!</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </form>
+</div>

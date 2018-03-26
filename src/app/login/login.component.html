@@ -1,0 +1,52 @@
+<div *ngIf="!this.globals.userIsLogged; else userIsLoggedIn">
+    <div *ngIf="this.globals.userIsRegistered; else toRegister" class="loginForm">
+        <form (submit)="login()">
+            <div class="helpMessage" (click)="openDialog('')">
+            </div>
+            <mat-form-field>
+                <input matInput placeholder="Enter your email" [formControl]="userFromFormInput.email" required/>
+                <mat-error *ngIf="userFromFormInput.email.invalid">{{getErrorMessage('email')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Enter your password" [formControl]="userFromFormInput.password"
+                       [type]="hidePasswordAtForm ? 'password' : 'text'" required/>
+                <mat-icon matSuffix (click)="hidePasswordAtForm = !hidePasswordAtForm">{{hidePasswordAtForm ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="userFromFormInput.email.invalid">{{getErrorMessage('password')}}</mat-error>
+            </mat-form-field>
+            <div class="mat-form-field">
+                <button [disabled]="userFromFormInput.email.invalid || userFromFormInput.password.invalid"
+                        class="btn btn-default" type="submit" mat-raised-button color="primary">Log In
+                </button>
+                <a mat-button color="primary" (click)="toUserSignUp()">Need a login?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #toRegister>
+    <div class="registerForm">
+        <form (submit)="register()">
+            <mat-form-field>
+                <input matInput placeholder="Enter your email" [formControl]="userFromFormInput.email" required/>
+                <mat-error *ngIf="userFromFormInput.email.invalid">{{getErrorMessage('email')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Enter your password" [formControl]="userFromFormInput.password"
+                       [type]="hidePasswordAtForm ? 'password' : 'text'" required/>
+                <mat-icon matSuffix (click)="hidePasswordAtForm = !hidePasswordAtForm">{{hidePasswordAtForm ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="userFromFormInput.email.invalid">{{getErrorMessage('password')}}</mat-error>
+            </mat-form-field>
+            <div class="mat-form-field">
+                <button [disabled]="userFromFormInput.email.invalid || userFromFormInput.password.invalid"
+                        class="btn btn-default" type="submit" mat-raised-button color="primary">Register
+                </button>
+                <a mat-button color="primary" (click)="toUserSignIn()">Have a login?</a>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<ng-template #userIsLoggedIn>
+    <div class="logoutForm">
+        <button mat-fab color="primary" (click)="logout()" align="center">Logout</button>
+    </div>
+</ng-template>

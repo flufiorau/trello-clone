@@ -1,0 +1,39 @@
+.authForms {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+    background-color: #e2e4e6;
+}
+
+.logoutForm, .registerForm, .loginForm {
+    margin: 10px auto;
+    width: fit-content;
+    position: relative;
+}
+
+.helpMessage {
+    width: 30px;
+    height: 30px;
+    float: right;
+    background: url("./icons/ic_help_outline_black_24px.svg") no-repeat;
+    position: absolute;
+    right: -15px;
+    top: 0;
+    z-index: 10;
+}
+
+.mat-icon, .helpMessage:hover {
+    cursor: pointer;
+}
+
+mat-form-field.mat-form-field {
+    font-size: 16px;
+}
+
+span.errMes {
+    font-size: 14px;
+    color: red;
+}
+
+.logoutForm {
+    text-align: center;
+}
+

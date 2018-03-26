@@ -1,0 +1,34 @@
+.task-card {
+    width: 365px;
+}
+
+.mat-checkbox-checked {
+    background: rgba(55, 255, 0, 0.1);
+    text-decoration: line-through;
+    opacity: .4;
+}
+
+.mat-checkbox-checked:hover {
+    background-color: unset;
+    opacity: unset;
+}
+
+.mat-checkbox {
+    display: inline-block;
+}
+
+.mat-checkbox-disabled {
+    opacity: 1;
+    color: #777;
+    width: available;
+}
+
+i{
+    opacity: 0.5;
+    float: right;
+    cursor: pointer;
+}
+i:hover {
+    opacity: 1;
+}
+

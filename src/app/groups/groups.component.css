@@ -1,0 +1,60 @@
+main {
+    background: #0179bf;
+    min-height: calc(100vh - 85px);
+}
+h2{
+    display: inline;
+}
+
+.group-card {
+    margin: 10px;
+}
+
+.mat-card {
+    display: inline-block;
+    vertical-align: top;
+    margin: 8px;
+    padding: 4px;
+    width: 225px;
+    background: #e2e4e6;
+}
+
+.fright {
+    float: right;
+}
+
+.new-list {
+    display: inline-block;
+    height: 35px;
+
+}
+
+.new-list:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+span.new-list {
+    line-height: 3;
+}
+
+input[type="text"] {
+    outline: none;
+}
+
+.mat-card > .mat-card-actions:last-child {
+    margin: 0 0 0 0;
+}
+
+input.new-list.ng-untouched {
+    background-color: #fff;
+}
+
+.editGroup{
+    opacity: 0.5;
+    float: right;
+    cursor: pointer;
+}
+.editGroup:hover{
+    opacity: 1;
+}

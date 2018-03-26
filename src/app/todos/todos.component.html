@@ -1,0 +1,47 @@
+<div *ngIf="tasks?.length > 0;else noTasks">
+    <div *ngFor="let task of tasks">
+        <div class="item-block" *ngIf="parentId == task.parentId">
+            <!--[ngClass]="{'mat-checkbox-checked': task.isChecked}">-->
+            <div *ngIf="globals.userIsLogged; else checkboxTemplate">
+                <div *ngIf="editState == ''">
+                    <mat-checkbox [checked]="task.isChecked"
+                                  (change)="task.isChecked = !task.isChecked;checkedTask(task)">
+                        <span *ngIf="editState == ''" class="taskTitle">{{task.title}}</span>
+                        <!--<input *ngIf="editState" class="taskTitle" [value]="task.title"/>-->
+                    </mat-checkbox>
+                    <i class="deleteTask material-icons" (click)="deleteTask(task)">delete</i>
+                    <i class="editTask material-icons" (click)="editTask(task)">mode_edit</i>
+                </div>
+                <div *ngIf="editState == task.id" align="center">
+                    <h3>Edit Task</h3>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Task title" [(ngModel)]="task.title" name="title">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Description" [(ngModel)]="task.description"
+                               name="description">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Due date" [(ngModel)]="task.dueDate"
+                               class="dueDate" name="dueDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <button (click)="updateTask(task)" mat-raised-button>Save!</button>
+                    <button (click)="editState = ''" mat-raised-button>Cancel</button>
+                </div>
+            </div>
+            <ng-template #checkboxTemplate>
+                <mat-checkbox [disabled]="disabledCheckbox" [checked]="task.isChecked">
+                    <span class="taskTitle">{{task.title}}</span>
+                </mat-checkbox>
+            </ng-template>
+        </div>
+    </div>
+    <app-task-add *ngIf="editState == ''" [task]="task" [parentId]="parentId"></app-task-add>
+
+</div>
+
+<ng-template #noTasks>
+    <app-task-add [task]="task" [parentId]="parentId"></app-task-add>
+</ng-template>
